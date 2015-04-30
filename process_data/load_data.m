@@ -106,7 +106,16 @@ figure; plot([y(1,:)' fCurrent(idx:idx+287,1)],'.-');
 % figure; plot([y(2,:)' sCurrent(1:288,1)],'.-');
 % figure; plot([y(1,:)' oCurrent(1:288,1)],'.-');
 %%
+dataset_delayed
+inM2 = mean(in2);
+inS2 = std(in2);
+in2 = normm(in2);
+outM2 = mean(out2);
+outS2 = std(out2);
+out2 = normm(out2);
 
+delS = inS2(6);
+delM = inM2(6);
 
 %%
 clear y
