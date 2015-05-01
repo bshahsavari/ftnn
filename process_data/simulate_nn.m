@@ -1,4 +1,4 @@
-function simulate_nn(data,nt,train)
+function simulate_nn(data,nt,train,daystart,f,m,K)
 
 fi      = 1;
 oi      = 2;
@@ -7,11 +7,7 @@ dayi    = 4;
 ti      = 5;
 deli    = 6;
 
-daystart = 1;
-dayend = 2;
-m = 1;
-f = @n3
-clear y
+dayend = daystart+1;
 idx = (daystart-1)*(nt-1)+1;
 idxend = (dayend-1)*(nt-1);
 input = data(idx:m:idxend,:);
@@ -25,7 +21,7 @@ y(:,1) = inputs(1,[fi oi si])';
 min5 = 1/24/60*5;
 for k = 2:size(input,1)
     tmp = [y(:,k-1);inputs(k-1,[dayi ti])'; (m*min5-delM)/delS];
-    if ~mod(k,60)
+    if ~mod(k,K)
         tmp = [inputs(k-1,:)'; (m*min5-delM)/delS];
     end
     y(:,k) = f(tmp);

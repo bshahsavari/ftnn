@@ -1,3 +1,4 @@
+clear all; close all
 processed_folder = 'E:\Dropbox\Research\Traffic\freeway_data\210E\data';
 vds = [717635];
 
@@ -33,8 +34,15 @@ d = d(:);
 data = [flw, occ, spd, d, t];
 
 %% 
-out = dataset_delayed(data,2.6e5,1,10);
-simulate_nn(data,nt,out)
+out = dataset_delayed(data,2.6e4,1,1);
+in1 = out.input;
+out1 = out.output;
+%% Simulate NN
+day1 = 2;
+m = 1;
+f = @n4
+K = 280
+simulate_nn(data,nt,out,day1,f,m,K)
 
 %%
 break

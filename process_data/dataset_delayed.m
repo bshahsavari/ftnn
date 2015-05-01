@@ -74,3 +74,4 @@ output = normm(output);
 % Construct output argument
 out = struct('output',output, 'input', input, 'inMean', inMean, 'inStd',inStd,'outMean', outMean, ...
     'outStd', outStd);
+
