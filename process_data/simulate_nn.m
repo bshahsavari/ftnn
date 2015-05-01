@@ -14,15 +14,15 @@ input = data(idx:m:idxend,:);
 inputs = (input - repmat(train.inMean(1:5),size(input,1),1))...
     ./repmat(train.inStd(1:5),size(input,1),1);
 
-delM = train.inMean(deli);
-delS = train.inStd(deli);
+% delM = train.inMean(deli);
+% delS = train.inStd(deli);
 
 y(:,1) = inputs(1,[fi oi si])';
 min5 = 1/24/60*5;
 for k = 2:size(input,1)
-    tmp = [y(:,k-1);inputs(k-1,[dayi ti])'; (m*min5-delM)/delS];
+    tmp = [y(:,k-1);inputs(k-1,[dayi ti])'];
     if ~mod(k,K)
-        tmp = [inputs(k-1,:)'; (m*min5-delM)/delS];
+        tmp = [inputs(k-1,:)'];
     end
     y(:,k) = f(tmp);
 end

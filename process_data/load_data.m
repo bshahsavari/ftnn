@@ -38,9 +38,9 @@ out = dataset_delayed(data,2.6e4,1,1);
 in1 = out.input;
 out1 = out.output;
 %% Simulate NN
-day1 = 2;
+day1 = 1;
 m = 1;
-f = @n4
+f = @myNeuralNetworkFunction
 K = 280
 simulate_nn(data,nt,out,day1,f,m,K)
 

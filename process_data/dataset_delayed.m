@@ -24,11 +24,12 @@ dayi    = 4;
 ti      = 5;
 
 % Construct input/output data with N rows
-while size(output,1) < N
+% while size(output,1) < N
     for delay = dmin:dmax
         
         % Choose random data instances
-        idx = randperm(nsamples-delay);
+%         idx = randperm(nsamples-delay);
+        idx = (1:nsamples-delay);
         % For the last delay, draw as many as needed to make the total number of rows equal to N 
         if delay == dmax
             numData4EachDelay = min(length(idx),N - size(input,1));
@@ -42,7 +43,8 @@ while size(output,1) < N
         delayVector(negIdx) = [];
 
         % Construct input training data: flow, occ, speed, day, time, delay
-        tmp = [d(idx,[fi,oi,si,dayi,ti]) delayVector];
+%         tmp = [d(idx,[fi,oi,si,dayi,ti]) delayVector];
+        tmp = [d(idx,[fi,oi,si,dayi,ti]) ];
         input = [input; tmp];
 
         % Index of delayed data
@@ -52,16 +54,16 @@ while size(output,1) < N
         tmp = [d(idx,[fi,oi,si])];
         output = [output;tmp];
     end
-end
+% end
 
 % Shuffle data
-shufIdx = randperm(N);
-input = input(shufIdx,:);
-output = output(shufIdx,:);
+% shufIdx = randperm(N);
+% input = input(shufIdx,:);
+% output = output(shufIdx,:);
 
 % Remove any extra row
-input = input(1:N,:);
-output = output(1:N,:);
+% input = input(1:N,:);
+% output = output(1:N,:);
 
 % Normalize data
 inMean = mean(input);
