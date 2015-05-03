@@ -6,4 +6,11 @@ Tom Choe, Alexander Skabardonis, and Pravin Varaiya.
 \newblock {\em Transportation Research Record: Journal of the Transportation
   Research Board}, 1811(1):67--75, 2002.
 
+\bibitem{neuralForcast}
+Byungkyu Park, Carroll~J Messer, and Thomas Urbanik~II.
+\newblock Short-term freeway traffic volume forecasting using radial basis
+  function neural network.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1651(1):39--47, 1998.
+
 \end{thebibliography}

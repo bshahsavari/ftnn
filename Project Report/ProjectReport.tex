@@ -3,31 +3,42 @@
 \usepackage{amsmath,amssymb}
 \usepackage{amsfonts}
 \usepackage{url}
+\usepackage{nth}
 \usepackage[hidelinks]{hyperref}
 \begin{document}
-\section*{Introduction}
+\section{Introduction}
 
 \par Macroscopic freeway traffic models are widely used by transportation engineers in order to design controllers and perform re-routing or road management to improve performance of the system; for instance, increasing total traveled distance and decreasing total travel time of vehicles in the network. A crucial component of this process of traffic management is simulation of traffic behavior which is usually accomplished using traditional simulators where system's behavior is predicted by the dynamics assumed to govern evolution of traffic.
 
 The burdensome aspect of traffic prediction is that traffic condition is contingent on too many different parameters. For instance, for a given network, the day for which the simulation is required, plays a significant role as traffic regime on weekends varies from the one on workdays. Furthermore, for a particular day, clearly, vehicular traffic in evening differs from the one at midnight. Thus, a decent traffic prediction must incorporate distinct parameters influencing traffic conditions.
 
-\section*{Motivation}
+\subsection{Motivation}
 
-As every watchful motorist driving in California freeways can recognize, there are numerous implemented loop detectors in freeway stretches of California that measure and record traffic metrics. These sensors provide traffic data-centers with huge amount of information that must be taken into account while making predictions. The immense existing data and complexity of traffic behavior as a result of being affected by different continuous and discrete parameters, motivated the authors to perform traffic prediction deploying neural network and deep learning methods to come up with a traffic simulation which can possibly perform better than the existing traffic simulators. 
+As every watchful motorist driving in California freeways can recognize, there are numerous implemented loop detectors in freeway stretches of California that measure and record traffic metrics. These sensors provide traffic data-centers with huge amount of information that must be taken into account while making predictions. The immense existing data and complexity of traffic behavior as a result of being affected by different continuous and discrete parameters, motivated the authors to perform traffic prediction deploying neural network and deep learning methods to come up with a traffic simulation which can possibly perform better than the existing traffic simulators\cite{neuralForcast}. 
 
-\section*{PeMS Data} 
+\subsection{PeMS Data} 
 PeMS (Performance Measurement System) is a traffic metrics measurement system all over California deployed to obtain loop detector data in real time \cite{PemsPravin}. Freeway PeMS data consists of measurements of vehicular flow, occupancy (fraction of time a vehicle is present on the loop) and speed in time intervals of $5$ minutes. PeMS data is available to users at \url{http://pems.dot.ca.gov/}. In this project, I-210 east (Figure \ref{fig:210}) PeMS data was used as the training and validation data set. 
 \begin{figure}[p]
     \centering
     \includegraphics[width=0.8\textwidth]{210.png}
     \caption{I-210 East Topology}
     \label{fig:210}
-\end{figure}  
+\end{figure} 
 
+
+\section{Data Analysis}
+
+\subsection{Training Data}
+As mentioned previously, since traffic behavior is highly dependent on time of the day and date, our training data consists of flow, occupancy, speed, date and time of day for a single VDS (vehicle detection station) of I-210. Each day is divided into 288 intervals where each time interval lasts $5$ minutes. This data was collected for the last three months of 2014 (October 1\textsuperscript{st} to December 31\textsuperscript{st}).
+\subsection{Training Method}
+Our main focus of data training was obtaining one-step prediction of traffic behavior; in other words, giving the features of a particular time step of a specific day as the inputs, the outputs should be flow, speed and occupancy of the considered VDS in the next time step. In order to get such a prediction function, a multi-layer neural network was trained on the data, whose characteristics such as number of hidden nodes, activation functions and number of hidden layers were obtained by cross-validation over a range of node numbers, activation function types and number of layers.
+ 
 
 
 \bibliographystyle{plain}
 \bibliography{references}
+
+
 
 
 \end{document}
