@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{cassidy}
+Michael~J Cassidy, Kitae Jang, and Carlos~F Daganzo.
+\newblock Macroscopic fundamental diagrams for freeway networks.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 2260(1):8--15, 2011.
+
+\bibitem{PemsPravin}
+Tom Choe, Alexander Skabardonis, and Pravin Varaiya.
+\newblock Freeway performance measurement system: operational analysis tool.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1811(1):67--75, 2002.
+
+\bibitem{universality}
+Bal{\'a}zs~Csan{\'a}d Cs{\'a}ji.
+\newblock Approximation with artificial neural networks.
+\newblock {\em Faculty of Sciences, Etvs Lornd University, Hungary}, 24, 2001.
+
+\bibitem{CTM}
+Carlos~F Daganzo.
+\newblock The cell transmission model: A dynamic representation of highway
+  traffic consistent with the hydrodynamic theory.
+\newblock {\em Transportation Research Part B: Methodological}, 28(4):269--287,
+  1994.
+
+\bibitem{Calibration}
+Gunes Dervisoglu, Gabriel Gomes, Jaimyoung Kwon, Roberto Horowitz, and Pravin
+  Varaiya.
+\newblock Automatic calibration of the fundamental diagram and empirical
+  observations on capacity.
+\newblock In {\em Transportation Research Board 88th Annual Meeting},
+  volume~15, 2009.
+
+\bibitem{NNreview}
+Mark Dougherty.
+\newblock A review of neural networks applied to transport.
+\newblock {\em Transportation Research Part C: Emerging Technologies},
+  3(4):247--260, 1995.
+
+\bibitem{neuralForcast}
+Byungkyu Park, Carroll~J Messer, and Thomas Urbanik~II.
+\newblock Short-term freeway traffic volume forecasting using radial basis
+  function neural network.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1651(1):39--47, 1998.
+
+\bibitem{occupancy}
+Yinhai Wang and Nancy~L Nihan.
+\newblock Freeway traffic speed estimation with single-loop outputs.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1727(1):120--126, 2000.
+
+\end{thebibliography}
