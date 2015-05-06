@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.2.1)  6 MAY 2015 10:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.2.1)  6 MAY 2015 13:15
 entering extended mode
 **Project_Report_CS289.tex
-("E:\Dropbox\Research\Traffic\Codes\Project Report\Project_Report_CS289.tex"
+
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\Project_Report_CS289.te
+x"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -13,7 +15,7 @@ german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
-("E:\Dropbox\Research\Traffic\Codes\Project Report\asme2e.cls"
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\asme2e.cls"
 Document Class: asme2e 2001/2/14 v2.0 Standard LaTeX document class
 ("D:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
@@ -299,7 +301,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip44
 )
-("E:\Dropbox\Research\Traffic\Codes\Project Report\Project_Report_CS289.aux")
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\Project_Report_CS289.au
+x")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
@@ -315,8 +318,7 @@ LaTeX Font Info:    ... okay on input line 54.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 54.
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+ ("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("D:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
@@ -347,13 +349,14 @@ LaTeX Info: Redefining \ref on input line 54.
 LaTeX Info: Redefining \pageref on input line 54.
 LaTeX Info: Redefining \nameref on input line 54.
 
-("E:\Dropbox\Research\Traffic\Codes\Project Report\Project_Report_CS289.out")
-("E:\Dropbox\Research\Traffic\Codes\Project Report\Project_Report_CS289.out")
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\Project_Report_CS289.ou
+t")
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\Project_Report_CS289.ou
+t")
 \@outlinefile=\write3
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 57
 .
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
+ ("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 57
@@ -435,18 +438,28 @@ File: 210.png Graphic file (type png)
  <use 210.png>
 Package pdftex.def Info: 210.png used on input line 106.
 (pdftex.def)             Requested size: 257.46187pt x 81.09311pt.
- [2 <E:/Dropbox/Research/Traffic/Codes/Project Report/fd.png> <E:/Dropbox/Resea
-rch/Traffic/Codes/Project Report/210.png>]
+ [2 <E:/Dropbox/Research/Traffic/Codes/ftnn/Project Report/fd.png> <E:/Dropbox/
+Research/Traffic/Codes/ftnn/Project Report/210.png>]
+<./Figures/NN_1.png, id=98, 396.7322pt x 99.37125pt>
+File: ./Figures/NN_1.png Graphic file (type png)
+ <use ./Figures/NN_1.png>
+Package pdftex.def Info: ./Figures/NN_1.png used on input line 122.
+(pdftex.def)             Requested size: 257.46187pt x 64.48895pt.
 
-LaTeX Warning: Reference `' on page 3 undefined on input line 119.
+<./Figures/perf1.pdf, id=105, 371.30418pt x 174.10747pt>
+File: ./Figures/perf1.pdf Graphic file (type pdf)
+
+<use ./Figures/perf1.pdf>
+Package pdftex.def Info: ./Figures/perf1.pdf used on input line 146.
+(pdftex.def)             Requested size: 257.46187pt x 120.73201pt.
 
 
-LaTeX Warning: Reference `' on page 3 undefined on input line 119.
+LaTeX Warning: Reference `' on page 3 undefined on input line 152.
 
-
-LaTeX Warning: Reference `' on page 3 undefined on input line 121.
-
-("E:\Dropbox\Research\Traffic\Codes\Project Report\Project_Report_CS289.bbl"
+[3 <E:/Dropbox/Research/Traffic/Codes/ftnn/Project Report/Figures/NN_1.png> <E:
+/Dropbox/Research/Traffic/Codes/ftnn/Project Report/Figures/perf1.pdf>]
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\Project_Report_CS289.bb
+l"
 Underfull \hbox (badness 1107) in paragraph at lines 10--14
 \OT1/ptm/m/n/10 Free-way per-for-mance mea-sure-ment sys-tem: op-er-a-tional
  []
@@ -457,42 +470,46 @@ Underfull \hbox (badness 2538) in paragraph at lines 28--34
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 167.
+ [4
 
-("E:\Dropbox\Research\Traffic\Codes\Project Report\Project_Report_CS289.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 136.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 136.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 167.
+
+("E:\Dropbox\Research\Traffic\Codes\ftnn\Project Report\Project_Report_CS289.au
+x")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 167.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 167.
 Package rerunfilecheck Info: File `Project_Report_CS289.out' has not changed.
-(rerunfilecheck)             Checksum: DA642F388ECC192DF9A30BB12BA8A361;698.
+(rerunfilecheck)             Checksum: F52563C71694140ABB14566CA3AFCF31;687.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 136.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 167.
  ) 
 Here is how much of TeX's memory you used:
- 6288 strings out of 493921
- 89634 string characters out of 3147277
- 173179 words of memory out of 3000000
- 9452 multiletter control sequences out of 15000+200000
- 57370 words of font info for 125 fonts, out of 3000000 for 9000
+ 6313 strings out of 493921
+ 90037 string characters out of 3147277
+ 174592 words of memory out of 3000000
+ 9463 multiletter control sequences out of 15000+200000
+ 58506 words of font info for 126 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  29i,11n,28p,1151b,336s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<D:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmr10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/cour
-ier/ucrr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb
-><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Program F
-iles/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><D:/Program Files/MiKTeX 2.9/fo
-nts/type1/urw/times/utmb8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Project_Report_CS289.pdf (3 pages, 925458 bytes).
+public/amsfonts/cm/cmsy10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier
+/ucrr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><D
+:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Program File
+s/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><D:/Program Files/MiKTeX 2.9/fonts
+/type1/urw/times/utmb8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
+utmr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Project_Report_CS289.pdf (4 pages, 950098 bytes).
 PDF statistics:
- 150 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
- 99 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 39 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

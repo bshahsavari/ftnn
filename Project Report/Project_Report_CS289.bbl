@@ -38,6 +38,11 @@ Mark Dougherty.
 \newblock {\em Transportation Research Part C: Emerging Technologies},
   3(4):247--260, 1995.
 
+\bibitem{hagan1994training}
+Martin~T Hagan and Mohammad~B Menhaj.
+\newblock Training feedforward networks with the marquardt algorithm.
+\newblock {\em Neural Networks, IEEE Transactions on}, 5(6):989--993, 1994.
+
 \bibitem{neuralForcast}
 Byungkyu Park, Carroll~J Messer, and Thomas Urbanik~II.
 \newblock Short-term freeway traffic volume forecasting using radial basis
