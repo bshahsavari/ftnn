@@ -58,7 +58,7 @@ for daytmp = 1:7
     days(badDays)=[];
     [DayNumber,DayName] = weekday(days);
 
-    pause
+%     pause
 end
 
 
@@ -105,6 +105,7 @@ normm = @(x) (x-repmat(mean(x),size(x,1),1))./repmat(std(x),size(x,1),1);
 in = [fCurrent, oCurrent, sCurrent, d, tCurrent]';
 % in = [oCurrent, sCurrent, d, tCurrent];
 in = normm(in')';
+in(4,:) = in(4,:)*1e1;
 out = [fNext, oNext, sNext]';
 % out = [oNext, sNext];
 outM = mean(out');
@@ -139,32 +140,50 @@ out = normm(out')';
 
 
 %%
-net = feedforwardnet([10,3],'trainlm');
-net.trainParam.max_fail = 20;
+net = feedforwardnet([40,6],'trainlm');
+% net = feedforwardnet([50],'trainscg');
+net.trainParam.max_fail = 2000;
+net.trainParam.epochs = 250;
+% net.layers{2}.transferFcn = 'tansig'
+% net.layers{3}.transferFcn = 'tansig'
 
-net = train(net,in,out);
+net = train(net,in,out,'useparallel','yes');
+% net = train(net,in,out,'useparallel','no');
+
 view(net)
+
 y = net(in);
 perf = perform(net,y,out)
 
 %%
-clear y
-idx = 20*287+1;
-y(:,1) = in(1:3,idx);
-for k = 2:nt
-    tmp = [y(:,k-1);in(4,k-1+idx-1);in(5,k-1+idx-1)];
-    if ~mod(k,280)
-        tmp = in(:,k-1+idx-1);
+
+dn =2;
+DayNumber(dn)
+dtmp = find(DayNumber ==DayNumber(dn),5)
+dtmp = [1:3]
+for dn=dtmp
+    clear y
+    dn
+    idx = (dn-1)*287+1;
+    y(:,1) = in(1:3,idx);
+    for k = 2:nt
+        tmp = [y(:,k-1);in(4,k-1+idx-1);in(5,k-1+idx-1)];
+        if ~mod(k,288)
+            tmp = in(:,k-1+idx-1);
+        end
+        y(:,k) = net(tmp);
     end
-    y(:,k) = net(tmp);
+
+    y = y.*repmat(outS',1,size(y,2)) + repmat(outM',1,size(y,2));
+
+    figure(1); hold on; plot([y(3,:)' sCurrent(idx:idx+287,1)],'.-');
+    legend('yh','y')
+    figure(2); hold on; plot([y(2,:)' oCurrent(idx:idx+287,1)],'.-');
+    figure(3); hold on; plot([y(1,:)' fCurrent(idx:idx+287,1)],'.-');
+    drawnow
 end
 
-y = y.*repmat(outS',1,size(y,2)) + repmat(outM',1,size(y,2));
-
-figure; plot([y(3,:)' sCurrent(idx:idx+287,1)],'.-');
-legend('yh','y')
-figure; plot([y(2,:)' oCurrent(idx:idx+287,1)],'.-');
-figure; plot([y(1,:)' fCurrent(idx:idx+287,1)],'.-');
+break;
 % y(:,1) = in(1,1:2)';
 % for k = 2:nt
 %     tmp = [y(:,k-1);in(k-1,3);in(k-1,4)];
