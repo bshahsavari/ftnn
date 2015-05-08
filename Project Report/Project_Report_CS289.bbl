@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{cassidy}
 Michael~J Cassidy, Kitae Jang, and Carlos~F Daganzo.
@@ -42,6 +42,11 @@ Mark Dougherty.
 Martin~T Hagan and Mohammad~B Menhaj.
 \newblock Training feedforward networks with the marquardt algorithm.
 \newblock {\em Neural Networks, IEEE Transactions on}, 5(6):989--993, 1994.
+
+\bibitem{moller1993scaled}
+Martin~Fodslette M{\o}ller.
+\newblock A scaled conjugate gradient algorithm for fast supervised learning.
+\newblock {\em Neural networks}, 6(4):525--533, 1993.
 
 \bibitem{neuralForcast}
 Byungkyu Park, Carroll~J Messer, and Thomas Urbanik~II.

@@ -1284,10 +1284,6 @@
 \else
  \def\ps@myheadings{%
      \let\@mkboth\@gobbletwo
-     \def\@oddfoot{\hskip1.55in\hfil\thepage\hfil Copyright\ \ \copyright\ \@confyear%
-    ~by ASME}%
-     \def\@evenfoot{\hskip1.55in\hfil\thepage\hfil Copyright\ \ \copyright\ \@confyear%
-    ~by ASME}%
 
     \let\@oddhead\@empty
     \let\@evenhead\@empty

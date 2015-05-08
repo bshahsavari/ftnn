@@ -41,7 +41,7 @@
 %%% second author
 %%% remove the following entry for single author papers
 %%% add more entries for additional authors
-\author{First Coauthor\thanks{Address all correspondence to this author.} \\
+\author{First Coauthor \\
 	{\tensfb Second Coauthor}     
 	\affiliation{Department or Division Name\\
 		Company or College Name\\
@@ -68,7 +68,7 @@
 
 The burdensome aspect of traffic prediction is that traffic condition is contingent on too many different parameters. For instance, for a given network, the day for which the simulation is required, plays a significant role as traffic regime on weekends varies from the one on workdays. Furthermore, for a particular day, clearly, vehicular traffic in evening differs from the one at midnight. Thus, a decent traffic prediction must incorporate distinct parameters influencing traffic conditions.
 
-\section{Motivation}
+%\section{Motivation}
 
 As every watchful motorist driving in California freeways can recognize, there are numerous implemented loop detectors in freeway stretches of California that measure and record traffic metrics. These sensors provide traffic data-centers with huge amount of information that must be taken into account while making predictions. The immense existing data and complexity of traffic behavior as a result of being affected by different continuous and discrete variables, motivated the authors to perform traffic prediction deploying neural network and deep learning methods to come up with a traffic simulation which can possibly perform better than the existing traffic simulators\cite{NNreview}. 
 \subsection{Fundamental Diagrams}
@@ -108,6 +108,47 @@ PeMS (Performance Measurement System) is a traffic metrics measurement system al
     \label{fig:210}
 \end{figure} 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./Figures/spd1}
+	\caption{Average speed for three days.}
+	\label{fig:spd1}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./Figures/occ1}
+	\caption{Average occupancy for three days.}
+	\label{fig:occ1}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./Figures/flw1}
+	\caption{Average flow for three days.}
+	\label{fig:flw1}
+\end{figure} 
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}[b]{\linewidth}
+%		\centering
+%		\includegraphics[width=0.69\linewidth]{./Figures/spd1}
+%		%	\caption{Speed}
+%		\label{fig:spd1}
+%	\end{subfigure} 
+%	\begin{subfigure}[b]{\linewidth}
+%		\centering
+%		\includegraphics[width=0.69\linewidth]{./Figures/occ1}
+%		%	\caption{Speed}
+%		\label{fig:occ1}
+%	\end{subfigure} 
+%	\begin{subfigure}[b]{\linewidth}
+%		\centering
+%		\includegraphics[width=0.7\linewidth]{./Figures/flw1}
+%		\caption{Speed}
+%		\label{fig:flw1}
+%	\end{subfigure} 
+%\end{figure}
 
 \subsection{Training Data}
 
@@ -129,7 +170,8 @@ It is known by Universal Approximation Theorem  \cite{universality} that any con
 In such an architecture, there are three crucial design parameters, namely the number of nodes in the hidden layer, the activation functions for the nodes and the cost function that is desired to be minimized when the trained network is applied to test data. In our running example, the number of nodes in the output layer is 3 since the output vector contains the measurements of \emph{flow}, \emph{occupancy} and \emph{speed}. The input vector, here, contains the same signals with one step delay as well as the corresponding time and day number (i.e. a vector in $\mathbb{R}^5$). 
 
 As mentioned above, a design parameter determining structure of the network is number of hidden nodes, denoted by $N$ in Fig.~\ref{fig:nn1}, that should be determined prior to the training process. In order to decide on the ``optimal'' number of hidden nodes, a range of values from $2$ to $80$ was chosen. We considered \emph{tanh} as the activation function for the neurons in the hidden layer, and a pure \emph{linear} function for the output layer nodes (c.f. Fig.~\ref{fig:nn1}). The available data was divided to training, validation and test data sets. These sets, respectively, held 70\%, 15\% and 15\% of the full data set.
-Levenberg-Marquardt backpropagation \cite{hagan1994training} since it is often one of the fastest backpropagation algorithm, and it is usually recommended as a first-choice supervised algorithm.
+
+There are many different algorithms such as ``Levenberg-Marquardt'' and ``Scaled Conjugate Gradient'' that can be used for training neural networks. Choosing the right algorithm may be a tedious process since it depends on many factors, including the complexity of the problem, the number of data points in the training set, the number of weights and biases in the network, the error goal, and whether the network is being used for pattern recognition (discriminant analysis) or function approximation (regression). Here, we started off with Levenberg-Marquardt backpropagation \cite{hagan1994training} since it is often one of the fastest backpropagation algorithms for regression, and it is usually recommended as a first-choice supervised algorithm.
 Like the quasi-Newton methods, the Levenberg-Marquardt algorithm was designed to approach second-order training speed without having to compute the Hessian matrix. 
 We chose MSE (mean squared error) as the optimization cost function. Validation vectors are used to stop training early if the network performance on the validation vectors fails to improve or remains the same for max-fail epochs in a row. Test vectors are used as a further check that the network is generalizing well, but do not have any effect on training. In MATLAB, training stops when any of these conditions occurs:
 \begin{enumerate}
@@ -140,15 +182,36 @@ We chose MSE (mean squared error) as the optimization cost function. Validation 
 \item $\mu$ exceeds $\mu_{\max}$.
 \item Validation performance has increased more than max-fail times since the last time it decreased (when using validation).
 \end{enumerate}
-Training for each set of parameters is performed with different random initializations to avoid being trapped in local minima and the the performance of trained network is shown in Fig~\ref{fig:perf1}. This figure indicates that the best performance is achieved by approximately $50$ nodes in the hidden layer when the activation function is \textit{tanh}.
+Training for each set of parameters is performed with different random initializations to avoid being trapped in local minima and the the performance of trained network is shown in Fig~\ref{fig:perf1}. This figure indicates that the best performance is achieved by approximately $50$ nodes in the hidden layer when the activation function is \textit{tanh}. Larger number of nodes  in this particular case results in a smaller training error, but at the same time causes over-fitting. The number of network parameters being learned by this network is 453 $\left([5+1]\times50+[50+1]\times 3\right)$.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\linewidth]{./Figures/perf1}
 	\caption{ The performance of trained neural network being normalized by the maximum achieved performance versus the number of nodes in the hidden layer when \emph{tanh} and \emph{linear} activation functions are used. }
 	\label{fig:perf1}
 \end{figure} 
+We also considered other activation functions including radial basis and sigmoid and repeated the process with the same design parameters (i.e. architecture and algorithm) and it was realized that among all \textit{tanh} performed better. Moreover, ``Scaled Conjugate Gradient'' (conjugate gradient backpropagation with Polak-Ribiére updates) \cite{moller1993scaled} and ``Variable Learning Rate Backpropagation'' (gradient descent with momentum and adaptive learning rate backpropagation) were considered as alternative algorithms. Among these three algorithms, Levenberg-Marquardt had the fastest convergence rate and smallest mean squared error. The set of all designing parameters used in the ``best'' achieved training are listed in Table~\ref{tab:param}. The code was being run in MATLAB on a machine with Windows Server 2012, Intel(R) Core(TM) i7-3770 CPU and 12.0 GB of RAM. Parallel computing toolbox of MATLAB was used to utilize 4 workers in a parallel pool for the training process.
 
- Different activation functions including radial basis, sigmoid and tangent hyperbolic were examined among which \textit{tanh} performed better by far and chosen as the activation function accordingly.  
+\begin{table}[t]
+	\centering
+
+	\caption{Final parameters used for neural network training}
+\begin{tabular}{c|c}	
+	\hline
+	\hline Algorithm & Levenberg-Marquardt \\ 
+	\hline Number of layers / parameters & 2 / 453 \\ 
+	\hline MSE (normalized input/output ) & 0.051 \\ 
+	\hline Number of epochs (time) & 117 (88 seconds) \\ 
+	\hline  	 
+\end{tabular} \label{tab:param}
+\end{table}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1\linewidth]{./Figures/trainingPerf}
+	\caption{ Training, validation and test performance. }
+	\label{fig:trainingPerf}
+\end{figure}
+
 The next step is determination of number of layers in the desired network. The question of what is the best of way of configuring a particular number of nodes (in this case $50$) should be addressed. Evidently, best in the optimal sense is obtained by optimizing over the whole set of possible configurations of the network which is practically impossible; hence, performance of several configurations of the network with $50$ nodes is compared (figure \ref{}) where the best performance is obtained by $x$ number of layers where first layer has $x$ number of nodes...
 
  

@@ -140,16 +140,19 @@ out = normm(out')';
 
 
 %%
-net = feedforwardnet([40,6],'trainlm');
+tic
+net = feedforwardnet([50],'trainlm');
 % net = feedforwardnet([50],'trainscg');
-net.trainParam.max_fail = 2000;
-net.trainParam.epochs = 250;
+net.trainParam.max_fail = 100;
+% net.trainParam.epochs = 00500;
+% net.trainParam.Mu = 0.5; 
+% net.trainParam.mu_dec = 0.99;
 % net.layers{2}.transferFcn = 'tansig'
 % net.layers{3}.transferFcn = 'tansig'
 
-net = train(net,in,out,'useparallel','yes');
+net = train(net,in,out,'useparallel','no');
 % net = train(net,in,out,'useparallel','no');
-
+toc
 view(net)
 
 y = net(in);
@@ -197,6 +200,74 @@ break;
 % 
 % figure; plot([y(2,:)' sCurrent(1:288,1)],'.-');
 % figure; plot([y(1,:)' oCurrent(1:288,1)],'.-');
+
+%%
+col = jet(7);
+dtmp = [1,3,7];
+
+figure(1);
+hold on;
+flw = reshape(X.flw, nt, []);
+H=[];
+timetmp = linspace(0,24,nt);
+for i = dtmp
+    idx = find(DayNumber == i);
+    idx = idx(5);
+    h = plot(timetmp', flw(:,idx),'linewidth',2,'color',col(i,:));
+    H = [H;h(1)];
+end
+[~,tmp]=weekday(dtmp);
+legend(H, tmp);
+xlabel('Time');
+ylabel('Flow (Veh/Hr)');
+grid on;
+xlim([0,24])
+tickValues = 0:1:24;
+set(gca,'XTick',tickValues)
+
+figure(2);
+hold on;
+occ = reshape(X.occ, nt, []);
+H=[];
+timetmp = linspace(0,24,nt);
+for i = dtmp
+    idx = find(DayNumber == i);
+    idx = idx(5);
+    h = plot(timetmp', occ(:,idx),'linewidth',2,'color',col(i,:));
+    H = [H;h(1)];
+end
+[~,tmp]=weekday(dtmp);
+legend(H, tmp);
+xlabel('Time');
+ylabel('Occupancy (%)');
+grid on;
+xlim([0,24])
+tickValues = 0:1:24;
+set(gca,'XTick',tickValues)
+
+figure(3);
+hold on;
+spd = reshape(X.spd, nt, []);
+H=[];
+timetmp = linspace(0,24,nt);
+for i = dtmp
+    idx = find(DayNumber == i);
+    idx = idx(5);
+    h = plot(timetmp', spd(:,idx),'linewidth',2,'color',col(i,:));
+    H = [H;h(1)];
+end
+[~,tmp]=weekday(dtmp);
+legend(H, tmp);
+xlabel('Time');
+ylabel('Speed (mph)');
+grid on;
+xlim([0,24])
+tickValues = 0:1:24;
+set(gca,'XTick',tickValues)
+
+
+
+
 %%
 dataset_delayed
 inM2 = mean(in2);
