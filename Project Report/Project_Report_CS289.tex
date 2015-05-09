@@ -7,6 +7,7 @@
 \usepackage{url}
 \usepackage{nth}
 \usepackage[hidelinks]{hyperref}
+\usepackage{flushend}
 %\confshortname{IDETC/CIE 2009}
 %\conffullname{the ASME 2009 International Design Engineering Technical Conferences \&\\
 %	Computers and Information in Engineering Conference}
@@ -25,29 +26,26 @@
 \papernum{CS289A Course Project}
 
 %%% You need to remove 'DRAFT: ' in the title for the final submitted version.
-\title{DRAFT: AN ARTICLE CREATED USING \LaTeX2\raisebox{-.3ex}{$\epsilon$}\ IN ASME FORMAT}
+\title{Freeway Traffic Data Prediction Using Neural Networks}
 
 %%% first author
-\author{Harry H. Cheng
+\author{Negar Zahedimehr\thanks{SID: 24984323}
 	\affiliation{
-		Integration Engineering Laboratory\\
-		Department of Mechanical and Aeronautical Engineering\\
+		Department of Mechanical Engineering\\
 		University of California\\
-		Davis, California 95616\\
-		Email: hhcheng@ucdavis.edu
+		Berkeley, California 94720\\
+		Email: negar.mehr@berkeley.edu
 	}	
 }
 
 %%% second author
 %%% remove the following entry for single author papers
 %%% add more entries for additional authors
-\author{First Coauthor \\
-	{\tensfb Second Coauthor}     
-	\affiliation{Department or Division Name\\
-		Company or College Name\\
-		City, State (spelled out), Zip Code\\
-		Country (only if not U.S.)\\
-		Email address (if available)
+\author{Behrooz Shahsavari \thanks{SID: 23260557}
+	\affiliation{Department of Mechanical Engineering\\
+		University of California\\
+		Berkeley, California 94720\\
+		Email: behrooz@berkeley.edu
 	}
 }
 
@@ -59,7 +57,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-{\it This article illustrates preparation of ASME paper using \LaTeX2\raisebox{-.3ex}{$\epsilon$}. An abstract for an ASME paper should be less than 150 words and is normally in italics.}
+{\it 
+	This paper proposes a fully automated method for simulating/predicting freeway traffic data by deploying neural networks. Our emphasis is on predicting ``{speed}", ``{occupancy}" and ``{flow}" of freeway segments by training neural networks using data provided by a set of sensors called ``{loop detectors}" that are being implemented in the freeway system of the state of California. This data is obtained from Caltrans Performance Measurement System  that collects real-time data from over 39,000 individual detectors.
+	The main advantage of attaining a neural network representing freeway traffic behavior is that it eliminates the need to assume a rule governing dynamics of traffic; thus, eradicates the process of parameter estimation. Besides, we have shown that very complicated traffic behavior, such as time-dependent nature of it can be captured by a neural network, e.g. by considering time as one of the inputs to the model. 
+	We also discuss deploying unsupervised learning classification algorithms for removing ``false" data in the preprocessing stage to avoid this type of data in our neural network training.
+}
 \end{abstract}
 
 \section{Introduction}
@@ -265,7 +267,7 @@ We also considered other activation functions including radial basis and sigmoid
 	\label{fig:trainingPerf}
 \end{figure}
 
-The trained neural network is used for short-time traffic prediction which is in fact our ultimate objective in this paper. As mentioned multiple times throughout the paper, the actual traffic states are sampled every 5 minutes by PeMs. Here, we are interested to know how our trained neural network is able to predict data when this fine resolution is not available. This is being tested by injecting the actual state to the model and then predicting the next 12 steps (60 minutes) without having access to the actual data till it will receive the next sample. Figure~\ref{fig:final1} depicts the actual and predicted data for Sat, Oct-04-2014 and Mon, Oct-06-2014. As can be seen in the figure, each predicted plot contains 24 small jumps that correspond to the moments the actual data is fed back to the predictor. As can be seen from the figure, the predicted data between these samples matches the real values very well.
+The trained neural network is used for short-time traffic prediction which is in fact our ultimate objective in this paper. As mentioned multiple times throughout the paper, the actual traffic states are sampled every 5 minutes by PeMS. Here, we are interested to know how our trained neural network is able to predict data when this fine resolution is not available. This is being tested by injecting the actual state to the model and then predicting the next 12 steps (60 minutes) without having access to the actual data till it will receive the next sample. Figure~\ref{fig:final1} depicts the actual and predicted data for Sat, Oct-04-2014 and Mon, Oct-06-2014. As can be seen in the figure, each predicted plot contains 24 small jumps that correspond to the moments the actual data is fed back to the predictor. As can be seen from the figure, the predicted data between these samples matches the real values very well.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\linewidth]{./Figures/final1}
@@ -276,15 +278,20 @@ The trained neural network is used for short-time traffic prediction which is in
 The next step is determination of number of layers in the desired network. The question of what is the best of way of configuring a particular number of nodes (in this case $50$) should be addressed. Evidently, best in the optimal sense is obtained by optimizing over the whole set of possible configurations of the network which is practically impossible; hence, performance of several configurations of the network with $50$ nodes is compared (figure \ref{}) where the best performance is obtained by $x$ number of layers where first layer has $x$ number of nodes...
 
  
-
+\section{Conclusion and Future Work}
+A fully automated scheme for predicting freeway traffic data by deploying neural networks was proposed. 
+Our scheme had two main steps, namely detecting ``unusual" measurements and removing them in a preprocessing stage, and training a two layer neural network based on the real traffic data provided by PeMS.
+Since usual and unusual days, by our definition, are not labeled we used an unsupervised classification algorithm with a self adjusting number of clusters to separate ``unusual" days from ``usual" days. A comprehensive study on  different possibilities for the architecture of neural network and training algorithm was performed. However, we did not present a deep learner by utilizing multilayer neural networks. Hence, this can be considered in a future work. Another interesting aspect of this problem that can be investigated is predicting traffic data in what we called ``unusual" days.
 
 \bibliographystyle{plain}
 \bibliography{references}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix       %%% starting appendix
-\section*{Appendix A: Head of First Appendix}
-Avoid Appendices if possible.
+%\appendix       %%% starting appendix
+%\section*{Appendix A: Head of First Appendix}
+%Avoid Appendices if possible.
+\
+
 
 
 
