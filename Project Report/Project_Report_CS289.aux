@@ -16,41 +16,49 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{MacroModels}
+\citation{TrafficPrediction}
+\citation{nearestNeighbor}
+\citation{Kalman}
+\citation{spectral}
 \citation{NNreview}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\citation{CTM}
 \citation{Calibration}
 \citation{cassidy}
-\citation{CTM}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Fundamental Diagrams}{1}{subsection.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Cell Transmission Model}{1}{subsection.1.2}}
 \citation{Calibration}
 \citation{neuralForcast}
-\citation{PemsPravin}
-\citation{occupancy}
-\newlabel{CTM_update}{{1}{2}{Cell Transmission Model}{equation.1.1}{}}
-\newlabel{flow_equation}{{2}{2}{Cell Transmission Model}{equation.1.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Fundamental Diagram Calibration}{2}{subsection.1.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Inspiration}{2}{subsection.1.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Macroscopic Freeway Models}{2}{section.2}}
+\newlabel{CTM_update}{{1}{2}{Macroscopic Freeway Models}{equation.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Fundamental Diagrams}{2}{subsection.2.1}}
+\newlabel{flow_equation}{{2}{2}{Fundamental Diagrams}{equation.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Calibration}{2}{subsection.2.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Fundamental Diagram of a Link in I-210 east}}{2}{figure.1}}
 \newlabel{fig:fd}{{1}{2}{Fundamental Diagram of a Link in I-210 east}{figure.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Data Analysis}{2}{section.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}PeMS Data}{2}{subsection.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces I-210 East Topology}}{2}{figure.2}}
-\newlabel{fig:210}{{2}{2}{I-210 East Topology}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average speed for three days.}}{2}{figure.3}}
-\newlabel{fig:spd1}{{3}{2}{Average speed for three days}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Inspiration}{2}{subsection.2.3}}
+\citation{PemsPravin}
+\citation{occupancy}
 \citation{universality}
-\citation{hagan1994training}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Data Analysis}{3}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Training Data}{3}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces I-210 East Topology}}{3}{figure.2}}
+\newlabel{fig:210}{{2}{3}{I-210 East Topology}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average speed for three days.}}{3}{figure.3}}
+\newlabel{fig:spd1}{{3}{3}{Average speed for three days}{figure.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Average occupancy for three days.}}{3}{figure.4}}
 \newlabel{fig:occ1}{{4}{3}{Average occupancy for three days}{figure.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Average flow for three days.}}{3}{figure.5}}
 \newlabel{fig:flw1}{{5}{3}{Average flow for three days}{figure.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Initial neural-network layout with one hidden and one output layer that have \emph  {tanh} and \emph  {linear} activation functions respectively }}{3}{figure.6}}
 \newlabel{fig:nn1}{{6}{3}{Initial neural-network layout with one hidden and one output layer that have \emph {tanh} and \emph {linear} activation functions respectively}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Training Data}{3}{subsection.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Training Method}{3}{subsection.2.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Neural Network Layout}{3}{figure.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Method}{3}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Neural Network Layout}{3}{figure.6}}
+\citation{hagan1994training}
 \citation{moller1993scaled}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  The performance of trained neural network being normalized by the maximum achieved performance versus the number of nodes in the hidden layer when \emph  {tanh} and \emph  {linear} activation functions are used. }}{4}{figure.7}}
+\newlabel{fig:perf1}{{7}{4}{The performance of trained neural network being normalized by the maximum achieved performance versus the number of nodes in the hidden layer when \emph {tanh} and \emph {linear} activation functions are used}{figure.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Final parameters used for neural network training}}{4}{table.1}}
+\newlabel{tab:param}{{1}{4}{Final parameters used for neural network training}{table.1}{}}
 \bibstyle{plain}
 \bibdata{references}
 \bibcite{cassidy}{1}
@@ -60,12 +68,13 @@
 \bibcite{Calibration}{5}
 \bibcite{NNreview}{6}
 \bibcite{hagan1994training}{7}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  The performance of trained neural network being normalized by the maximum achieved performance versus the number of nodes in the hidden layer when \emph  {tanh} and \emph  {linear} activation functions are used. }}{4}{figure.7}}
-\newlabel{fig:perf1}{{7}{4}{The performance of trained neural network being normalized by the maximum achieved performance versus the number of nodes in the hidden layer when \emph {tanh} and \emph {linear} activation functions are used}{figure.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Final parameters used for neural network training}}{4}{table.1}}
-\newlabel{tab:param}{{1}{4}{Final parameters used for neural network training}{table.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Training, validation and test performance. }}{4}{figure.8}}
-\newlabel{fig:trainingPerf}{{8}{4}{Training, validation and test performance}{figure.8}{}}
-\bibcite{moller1993scaled}{8}
-\bibcite{neuralForcast}{9}
-\bibcite{occupancy}{10}
+\bibcite{MacroModels}{8}
+\bibcite{moller1993scaled}{9}
+\bibcite{Kalman}{10}
+\bibcite{neuralForcast}{11}
+\bibcite{nearestNeighbor}{12}
+\bibcite{spectral}{13}
+\bibcite{TrafficPrediction}{14}
+\bibcite{occupancy}{15}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Training, validation and test performance. }}{5}{figure.8}}
+\newlabel{fig:trainingPerf}{{8}{5}{Training, validation and test performance}{figure.8}{}}

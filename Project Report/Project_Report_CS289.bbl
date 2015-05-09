@@ -43,10 +43,22 @@ Martin~T Hagan and Mohammad~B Menhaj.
 \newblock Training feedforward networks with the marquardt algorithm.
 \newblock {\em Neural Networks, IEEE Transactions on}, 5(6):989--993, 1994.
 
+\bibitem{MacroModels}
+Dirk Helbing.
+\newblock Theoretical foundation of macroscopic traffic models.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  219(3):375--390, 1995.
+
 \bibitem{moller1993scaled}
 Martin~Fodslette M{\o}ller.
 \newblock A scaled conjugate gradient algorithm for fast supervised learning.
 \newblock {\em Neural networks}, 6(4):525--533, 1993.
+
+\bibitem{Kalman}
+Iwao Okutani and Yorgos~J Stephanedes.
+\newblock Dynamic prediction of traffic volume through kalman filtering theory.
+\newblock {\em Transportation Research Part B: Methodological}, 18(1):1--11,
+  1984.
 
 \bibitem{neuralForcast}
 Byungkyu Park, Carroll~J Messer, and Thomas Urbanik~II.
@@ -54,6 +66,27 @@ Byungkyu Park, Carroll~J Messer, and Thomas Urbanik~II.
   function neural network.
 \newblock {\em Transportation Research Record: Journal of the Transportation
   Research Board}, 1651(1):39--47, 1998.
+
+\bibitem{nearestNeighbor}
+Brian~L Smith, Billy~M Williams, and R~Keith Oswald.
+\newblock Comparison of parametric and nonparametric models for traffic flow
+  forecasting.
+\newblock {\em Transportation Research Part C: Emerging Technologies},
+  10(4):303--321, 2002.
+
+\bibitem{spectral}
+Anthony Stathopoulos and M~Karlaftis.
+\newblock Temporal and spatial variations of real-time traffic data in urban
+  areas.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1768(1):135--140, 2001.
+
+\bibitem{TrafficPrediction}
+Anthony Stathopoulos and Matthew~G Karlaftis.
+\newblock A multivariate state space approach for urban traffic flow modeling
+  and prediction.
+\newblock {\em Transportation Research Part C: Emerging Technologies},
+  11(2):121--135, 2003.
 
 \bibitem{occupancy}
 Yinhai Wang and Nancy~L Nihan.
