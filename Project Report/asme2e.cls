@@ -1295,7 +1295,7 @@
                   {}}$\hfill}%
                   %{\scriptsize\today\qquad\currenttime}}$\hfill}%
      \def\@oddfoot{\reset@font\rm\hskip1.55in\hfil\thepage%
-     \hfil Copyright\ \ \copyright\ \@confyear\ by ASME}%
+     \hfil \ \ \\ \@confyear\ }%
      \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
 
 \fi
@@ -1307,9 +1307,9 @@
 %      \def\@oddfoot{\hskip1.55in\hfil\thepage}
 %      \def\@evenfoot{\hskip1.55in\hfil\thepage}}
 %      {\def\@oddfoot{\hskip1.55in\hfil\thepage\hfil Copyright\ \ \copyright\ \confyear%
-%    ~by ASME}%
+%    ~by ASME3}%
 %      \def\@evenfoot{\hskip1.55in\hfil\thepage\hfil Copyright\ \ \copyright\ \confyear%
-%    ~by ASME}%}
+%    ~by ASME2}%}
 %
 %\let\@oddhead\@empty
 %\let\@evenhead\@empty
@@ -1325,7 +1325,7 @@
 %     \def\@oddhead{$\smash{\raise72pt\hbox%
 %                  {\scriptsize\today\qquad\currenttime}}$\hfill}%
 %     \def\@oddfoot{\reset@font\rm\hskip1.55in\hfil\thepage%
-%     \hfil Copyright\ \ \copyright\ \confyear\ by ASME}%
+%     \hfil Copyright\ \ \copyright\ \confyear\ by ASME4}%
 %     \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
 
 \newcount\tminute\newcount\thour

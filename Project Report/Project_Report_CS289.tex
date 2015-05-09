@@ -170,27 +170,36 @@ Due to highly time-dependent nature of traffic, our training data for a single V
 \item Time of the day
 \end{itemize}
  
-\subsection{Training Method}
+\section{Training Method}
 Our main focus of data training was obtaining one-step prediction of traffic behavior; in other words, giving the features of a particular time step of a specific day as the inputs, the outputs should be flow, speed and occupancy of the considered VDS in the next time step. In order to get such a prediction function, a multi-layer neural network was trained on the data, whose characteristics such as number of hidden nodes and number of hidden layers were obtained by cross-validation over a range of node numbers and number of layers.
 
-\subsubsection{Neural Network Layout}
+\subsection{Neural Network Layout}
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\linewidth]{./Figures/NN_1}
-	\caption{Initial neural-network layout with one hidden and one output layer that have \emph{tanh} and \emph{linear} activation functions respectively }
+	\caption{Initial neural-network layout with one hidden and one output layer that have \emph{tanh} and \emph{linear} activation functions respectively. }
 	\label{fig:nn1}
 \end{figure} 
 
-It is known by Universal Approximation Theorem  \cite{universality} that any continuous function on a bounded domain can be approximated by a two-layer neural network with a finite number of hidden nodes. Thereby, the very first step in implementing a NN (deep) learning algorithm is to start with a neural network that has one hidden layer and one output layer as shown in Fig.~\ref{fig:nn1}. 
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./Figures/badPrediction}
+	\caption{An example of ``bad'' prediction on a Wednesday: the predicted occupancy based on the initial states differs from the actual occupancy values reported by VDS during the day.}
+	\label{fig:badPrediction}
+\end{figure}
+
+
+It is known by Universal Approximation Theorem  \cite{universality} that any continuous function on a bounded domain can be approximated by a two-layer neural network with a finite number of hidden nodes. Thereby, the very first step in implementing a NN (deep) learning algorithm is to start with a neural network that has one hidden layer and one output layer as is shown in Fig.~\ref{fig:nn1}. 
 
 In such an architecture, there are three crucial design parameters, namely the number of nodes in the hidden layer, the activation functions for the nodes and the cost function that is desired to be minimized when the trained network is applied to test data. In our running example, the number of nodes in the output layer is 3 since the output vector contains the measurements of \emph{flow}, \emph{occupancy} and \emph{speed}. The input vector, here, contains the same signals with one step delay as well as the corresponding time and day number (i.e. a vector in $\mathbb{R}^5$). 
 
-As mentioned above, a design parameter determining structure of the network is number of hidden nodes, denoted by $N$ in Fig.~\ref{fig:nn1}, that should be determined prior to the training process. In order to decide on the ``optimal'' number of hidden nodes, a range of values from $2$ to $80$ was chosen. We considered \emph{tanh} as the activation function for the neurons in the hidden layer, and a pure \emph{linear} function for the output layer nodes (c.f. Fig.~\ref{fig:nn1}). The available data was divided to training, validation and test data sets. These sets, respectively, held 70\%, 15\% and 15\% of the full data set.
+As mentioned above, a design parameter determining structure of the network is number of hidden nodes, denoted by $N$ in Fig.~\ref{fig:nn1}, that should be determined prior to the training process. In order to decide on the ``optimal'' number of hidden nodes, a range of values from $2$ to $80$ was chosen. We considered \emph{tanh} as the activation function for the neurons in the hidden layer, and a pure \emph{linear} function for the output layer nodes (c.f. Fig.~\ref{fig:nn1}). 
 
 There are many different algorithms such as ``Levenberg-Marquardt'' and ``Scaled Conjugate Gradient'' that can be used for training neural networks. Choosing the right algorithm may be a tedious process since it depends on many factors, including the complexity of the problem, the number of data points in the training set, the number of weights and biases in the network, the error goal, and whether the network is being used for pattern recognition (discriminant analysis) or function approximation (regression). Here, we started off with Levenberg-Marquardt backpropagation \cite{hagan1994training} since it is often one of the fastest backpropagation algorithms for regression, and it is usually recommended as a first-choice supervised algorithm.
 Like the quasi-Newton methods, the Levenberg-Marquardt algorithm was designed to approach second-order training speed without having to compute the Hessian matrix. 
-We chose MSE (mean squared error) as the optimization cost function. Validation vectors are used to stop training early if the network performance on the validation vectors fails to improve or remains the same for max-fail epochs in a row. Test vectors are used as a further check that the network is generalizing well, but do not have any effect on training. In MATLAB, training stops when any of these conditions occurs:
+We chose MSE (mean squared error) as the optimization cost function. Validation vectors are used to stop training early if the network performance on the validation vectors fails to improve or remains the same for ``max-fail'' epochs in a row. Test vectors are used as a further check that the network is generalizing well, but do not have any effect on training. In MATLAB, training stops when any of these conditions occurs:
 \begin{enumerate}
 \item The maximum number of epochs (repetitions) is reached.
 \item The maximum amount of time is exceeded.
@@ -199,14 +208,41 @@ We chose MSE (mean squared error) as the optimization cost function. Validation 
 \item $\mu$ exceeds $\mu_{\max}$.
 \item Validation performance has increased more than max-fail times since the last time it decreased (when using validation).
 \end{enumerate}
-Training for each set of parameters is performed with different random initializations to avoid being trapped in local minima and the the performance of trained network is shown in Fig~\ref{fig:perf1}. This figure indicates that the best performance is achieved by approximately $50$ nodes in the hidden layer when the activation function is \textit{tanh}. Larger number of nodes  in this particular case results in a smaller training error, but at the same time causes over-fitting. The number of network parameters being learned by this network is 453 $\left([5+1]\times50+[50+1]\times 3\right)$.
+
+\subsection{Initial Results:}\label{sec:initial}
+We used MATLAB to train a neural network with the aforementioned parameters and architecture. Once our first predictor, say $M$, was trained, we applied it to the testing set as follows. The initial input to the neural network for a particular day, say $d$, and initial time, say $k_0$, was the state measurements -- flow ($f$), speed($s$), occupancy($o$), day number and time -- and the output was the prediction of flow, speed and occupancy in the next 5 minutes. 
+\begin{align}
+\begin{bmatrix}
+\hat{f}(k_0+1)\\\hat{s}(k_0+1)\\\hat{o}(k_0+1)
+\end{bmatrix} = M(f(k_0),s(k_0), o(k_0), k_0, d)
+\end{align}
+In the next step, we used these predicted values with corresponding time (previous time plus 5 minutes) and the same day number as the inputs for the next prediction
+\begin{align}
+\begin{bmatrix}
+\hat{f}(k+1)\\\hat{s}(k+1)\\\hat{o}(k+1)
+\end{bmatrix} = M(\hat{f}(k),\hat{s}(k), \hat{o}(k), k, d), \quad k_0<k\le k_0+H.
+\end{align}
+Here, $H$ is the maximum number of step that keeps time $k_0+H$ still in the same day $d$. By visualization of the prediction error we observed that the accuracy results for some days is very poor. We call these days ``unusual'' and expect that this irregularity is due to special circumstances such as very different weather conditions, road constructions or holidays. An example of this type of bad predictions is shown in Fig.~\ref{fig:badPrediction}.
+
+\subsection{Classification of Days Using Unsupervised Learning:}
+Being motivated by removing the ``unusual'' days (bad data) from the data set in an automatic manner, we propose categorizing the days into twofolds using an unsupervised clustering algorithm since there is no label available for usual and unusual days. We used K-means clustering with increasing value of $k$ (i.e. number of clusters) starting from $k=1$. Our strategy for finding the best number of clusters is that for each choose of $k$ we define the ``usual'' days as the instances that form the most crowded cluster, and label the other instances as ''unusual" days. It is clear that if $k$ is very large, the total distance will be very small but the number of useful data points labeled as ''usual" days will be also decreased. Therefore, we should look for the smallest value of $k$ that does not create a small cluster of useful data set. Therefore, we define the best value of $k$ as the smallest positive integer that decreases the total distance of data points that decreases the total distance by a factor of $c$ and at the same time labels at least $b\%$ of data points as the ``usual" days. After a few manual iterations, we chose $c=1.1$ and $b=90$. Using these two values, all days were either classified to two clusters (good and bad data), or one cluster -- all data was useful for that particular weekday, e.g. Mondays. In a preprocessing stage we normalized the flow, speed and occupancy data to have zero mean and unit variance and then stuck them together to create one single vector in $\mathbb{R}^{864}$ ($288$ samples for each of these three signals). An example of clustering results is shown in Fig.~\ref{fig:clustering} where the data of occupancy of all Wednesdays is categorized into usual and unusual days.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./Figures/clustering}
+	\caption{An unsupervised clustering example for separating data of Wednesdays to ``usual'' and ``unusual'' days using K-Means.}
+	\label{fig:clustering}
+\end{figure}
+
+\subsection{Final Results}
+Training on data of usual days for a the same number of neurons as section \ref{sec:initial} is performed with different random initializations to avoid being trapped in local minima and the performance of trained network is shown in Fig~\ref{fig:perf1}. This figure indicates that the best performance is achieved by approximately $50$ nodes in the hidden layer when the activation function is \textit{tanh}. Larger number of nodes  in this particular case results in a smaller training error, but at the same time causes over-fitting. The number of network parameters being learned by this network is 453 $\left([5+1]\times50+[50+1]\times 3\right)$.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1\linewidth]{./Figures/perf1}
 	\caption{ The performance of trained neural network being normalized by the maximum achieved performance versus the number of nodes in the hidden layer when \emph{tanh} and \emph{linear} activation functions are used. }
 	\label{fig:perf1}
 \end{figure} 
-We also considered other activation functions including radial basis and sigmoid and repeated the process with the same design parameters (i.e. architecture and algorithm) and it was realized that among all \textit{tanh} performed better. Moreover, ``Scaled Conjugate Gradient'' (conjugate gradient backpropagation with Polak-Ribiére updates) \cite{moller1993scaled} and ``Variable Learning Rate Backpropagation'' (gradient descent with momentum and adaptive learning rate backpropagation) were considered as alternative algorithms. Among these three algorithms, Levenberg-Marquardt had the fastest convergence rate and smallest mean squared error. The set of all designing parameters used in the ``best'' achieved training are listed in Table~\ref{tab:param}. The code was being run in MATLAB on a machine with Windows Server 2012, Intel(R) Core(TM) i7-3770 CPU and 12.0 GB of RAM. Parallel computing toolbox of MATLAB was used to utilize 4 workers in a parallel pool for the training process.
+We also considered other activation functions including radial basis and sigmoid and repeated the process with the same design parameters (i.e. architecture and algorithm) and it was realized that among all \textit{tanh} performed better. Moreover, ``Scaled Conjugate Gradient'' (conjugate gradient backpropagation with Polak-Ribiére updates) \cite{moller1993scaled} and ``Variable Learning Rate Backpropagation'' (gradient descent with momentum and adaptive learning rate backpropagation) were considered as alternative algorithms. Among these three algorithms, Levenberg-Marquardt had the fastest convergence rate and smallest mean squared error. The set of all designing parameters used in the ``best'' achieved training are listed in Table~\ref{tab:param}. The code was being run in MATLAB on a machine with Windows Server 2012, Intel(R) Core(TM) i7-3770 CPU and 12.0 GB of RAM. Parallel computing toolbox of MATLAB was used to utilize 4 workers in a parallel pool for the training process. The total training time in this environment for the best case was 88 seconds. The mean squared error evolution during the training for train, validation and test set is shown in Fig.~\ref{fig:trainingPerf}.
 
 \begin{table}[t]
 	\centering
@@ -227,6 +263,14 @@ We also considered other activation functions including radial basis and sigmoid
 	\includegraphics[width=1\linewidth]{./Figures/trainingPerf}
 	\caption{ Training, validation and test performance. }
 	\label{fig:trainingPerf}
+\end{figure}
+
+The trained neural network is used for short-time traffic prediction which is in fact our ultimate objective in this paper. As mentioned multiple times throughout the paper, the actual traffic states are sampled every 5 minutes by PeMs. Here, we are interested to know how our trained neural network is able to predict data when this fine resolution is not available. This is being tested by injecting the actual state to the model and then predicting the next 12 steps (60 minutes) without having access to the actual data till it will receive the next sample. Figure~\ref{fig:final1} depicts the actual and predicted data for Sat, Oct-04-2014 and Mon, Oct-06-2014. As can be seen in the figure, each predicted plot contains 24 small jumps that correspond to the moments the actual data is fed back to the predictor. As can be seen from the figure, the predicted data between these samples matches the real values very well.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1\linewidth]{./Figures/final1}
+	\caption{Actual and predicted traffic data on Sat, Oct-04-2014 and Mon, Oct-06-2014. Predictor has received actual data every 1 hour (jumps on the plot) and predicted traffic states every 5 minutes till the next sampling arrives.}
+	\label{fig:final1}
 \end{figure}
 
 The next step is determination of number of layers in the desired network. The question of what is the best of way of configuring a particular number of nodes (in this case $50$) should be addressed. Evidently, best in the optimal sense is obtained by optimizing over the whole set of possible configurations of the network which is practically impossible; hence, performance of several configurations of the network with $50$ nodes is compared (figure \ref{}) where the best performance is obtained by $x$ number of layers where first layer has $x$ number of nodes...
